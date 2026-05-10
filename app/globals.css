@@ -1,26 +1,268 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f2e9;
+  --secondary: #171717;
+  --dark-blue-bg : #1A212D;
+  --light-grey :#F5F5F5;
+  --accent: #F97415;
+  --accent-strong: #d95a00;
+  --accent-soft: #ff9352;
+--primary:#FFFDF8;
+  --font-general-sans: "General Sans", var(--font-dm-sans), "Segoe UI", sans-serif;
+  --text-white: #fff;
+  --text-black: #111;
+  --border-radius: 10px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-general-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-general-sans);
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-general-sans);
+}
+
+
+.page-shell {
+  background:
+    radial-gradient(circle at top left, rgba(255, 107, 0, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+}
+
+.dealer-card {
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.06);
+}
+
+/* Reusable design tokens & utility classes for text / buttons / backgrounds */
+/* Text styles */
+.text-accent { color: var(--accent); }
+.text-accent-strong { color: var(--accent-strong); }
+.text-muted { color: rgba(23,23,23,0.55); }
+.text-inverse { color: white; }
+
+/* Background helpers */
+.bg-accent { background-color: var(--accent); }
+.bg-accent-strong { background-color: var(--accent-strong); }
+.bg-accent-soft { background-color: var(--accent-soft); }
+.bg-card { background-color: white; box-shadow: 0 8px 30px rgba(17,17,17,0.07); border-radius: 12px; }
+
+/* Button primitives */
+.btn-sm { padding: 0.4rem 0.75rem; font-size: 0.85rem; border-radius: 10px; }
+.btn-lg { padding: 0.9rem 1.25rem; font-size: 1.05rem; border-radius: 14px; }
+
+/* New named button classes (replace generic .btn/.btn-primary) */
+.btn-orange {
+  border-radius: var(--border-radius);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(249,116,21,0.18);
+}
+.btn-orange:hover { filter: brightness(0.96); }
+
+.btn-white {
+  border-radius: var(--border-radius);
+  background: #ffffff;
+  color: var(--dark-blue-bg);
+  border: 1px solid rgba(17,17,17,0.06);
+}
+.btn-white:hover { transform: translateY(-1px); }
+
+.btn-black {
+  border-radius: var(--border-radius);
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.btn-outline-soft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid rgba(23,23,23,0.12);
+}
+.btn-outline-soft:hover { border-color: rgba(23,23,23,0.24); }
+
+/* Utility for card heading that uses accent */
+.section-heading-accent { color: var(--accent); font-weight: 700; }
+
+/* Small helper for subtle dividers */
+.divider-subtle { border-top: 1px solid rgba(17,17,17,0.06); }
+
+/* Banner-specific buttons used in hero/banner areas */
+.btn-banner-primary {
+  height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(249,116,21,0.18);
+  font-weight: 700;
+}
+.btn-banner-primary:hover { filter: brightness(0.96); }
+
+.btn-banner-secondary {
+  height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.95);
+  color: var(--dark-blue-bg);
+  border: 1px solid rgba(17,17,17,0.06);
+  font-weight: 600;
+}
+.btn-banner-secondary:hover { background: white; transform: translateY(-1px); }
+
+/* Inventory card panel */
+.inventory-card-info {
+  background: var(--light-grey);
+  color: white;
+}
+
+.inventory-card-info-muted {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Inspection / Verified process accordion styles matching Figma */
+.inspection-accordion {
+  border-radius: 16px;
+}
+.inspection-item {
+  padding-left: 0;
+  padding-right: 0;
+  border-color: rgba(17,17,17,0.06);
+}
+.inspection-number {
+  display: inline-block;
+  min-width: 34px;
+  color: rgba(17,17,17,0.45);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+.inspection-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.inspection-desc {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  color: rgba(17,17,17,0.55);
+  line-height: 1.6;
+}
+
+/* subtle caret color */
+.inspection-item svg { color: rgba(17,17,17,0.35); }
+
+
+/* Marquee / alternating testimonials */
+.marquee-track {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  /* overflow-x:clip lets the marquee hide horizontal bleed without
+     creating a scroll container, so overflow-y:visible is honoured
+     and tall cards are never clipped at the bottom */
+  .marquee-track {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+}
+.marquee-group {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: stretch;
+  will-change: transform;
+}
+.marquee-item {
+  padding-right: 1rem;
+  height: 280px;
+  display: flex;
+  align-items: stretch;
+  min-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .marquee-item {
+    min-width: 300px;
+    height: auto;
+    align-self: stretch;
+  }
+  .marquee-item article {
+    height: 100%;
+  }
+  .marquee-group {
+    align-items: flex-start;
+  }
+}
+
+
+.marquee-left .marquee-group {
+  animation: marquee-scroll 36s linear infinite;
+}
+.marquee-right .marquee-group {
+  animation: marquee-scroll 36s linear infinite reverse;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause on hover */
+.marquee-track:hover .marquee-group { animation-play-state: paused; }
+
+/* Edge gradient overlays for testimonial marquee (fades cards at the sides) */
+.reviews-marquee-container { position: relative; }
+.reviews-marquee-container::before,
+.reviews-marquee-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 20;
+}
+@media (min-width: 768px) {
+  .reviews-marquee-container::before,
+  .reviews-marquee-container::after {
+    width: 160px;
+  }
+}
+.reviews-marquee-container::before {
+  left: 0;
+  background: linear-gradient(90deg, rgb(14,16,21) 0%, rgba(14,16,21,0) 100%);
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+}
+.reviews-marquee-container::after {
+  right: 0;
+  background: linear-gradient(90deg, rgba(14,16,21,0) 0%, rgb(14,16,21) 100%);
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
